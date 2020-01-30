@@ -8,6 +8,8 @@ To run this project you need:
 - Mongo
 - A coffee ☕️
 
+Then install all node packages simply with `npm install` at the root
+
 ## API
 
 - API following the [JSON API Specs](https://jsonapi.org/)

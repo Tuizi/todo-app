@@ -4,6 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "install:api": "cd api && npm install",
+    "install:web": "cd web && npm install",
+    "postinstall": "npm run install:api && npm run install:web",
     "start": ""
   },
   "repository": {
