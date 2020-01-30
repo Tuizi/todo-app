@@ -10,9 +10,8 @@ To run this project you need:
 
 ## API
 
-API following the [JSON API Specs](https://jsonapi.org/)
-
-**PORT: 6000**
+- API following the [JSON API Specs](https://jsonapi.org/)
+- 🚨 Have a look to the .env file. For the purpose of this example this file is commited, in the real world you would never do that.
 
 ```sh
 npm run dev # For dev
@@ -34,4 +33,5 @@ docker-compose up # -d to run in background
 Test your connection with:
 
 ```sh
+mongo -u api --authenticationDatabase todo_app
 ```
