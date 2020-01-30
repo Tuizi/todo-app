@@ -8,7 +8,7 @@ To run this project you need:
 - Mongo
 - A coffee ☕️
 
-Then install all node packages simply with `npm install` at the root
+Then run `npm install` and start the dev environment with `npm run start`
 
 ## API
 

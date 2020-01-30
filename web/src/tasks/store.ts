@@ -1,7 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { ITasksState } from './models';
 
-export default createSlice({
+export default createSlice<ITasksState, {}>({
   name: 'tasks',
-  initialState: [],
+  initialState: {
+    collection: []
+  },
   reducers: {}
 });
