@@ -1,0 +1,14 @@
+version: '3.1'
+
+services:
+  mongo:
+    image: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=TheRoot
+      - MONGO_INITDB_ROOT_PASSWORD=AStrongPassword
+      - MONGO_INITDB_DATABASE=todo_app
+    volumes:
+      - ./seed.js:/docker-entrypoint-initdb.d/seed.js:ro
+      - ./mongo-volume:/data/db
+    ports:
+      - '27017-27019:27017-27019'
