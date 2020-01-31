@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/Tuizi/todo-app/issues"
   },
-  "homepage": "https://github.com/Tuizi/todo-app#readme"
+  "homepage": "https://github.com/Tuizi/todo-app#readme",
+  "devDependencies": {
+    "concurrently": "^5.1.0"
+  }
 }

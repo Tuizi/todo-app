@@ -8,7 +8,19 @@ To run this project you need:
 - Mongo
 - A coffee ☕️
 
-Then run `npm install` and start the dev environment with `npm run start`
+Then run `npm install` and start the dev environment with `npm start`
+
+## TODO
+
+- Better error management (400, 404 & 500)
+- showcase reselect
+- Tests (cypress | jest)
+- CI/CD (Actions)
+- Docker + k8
+- Lerna with an ui-library
+- Api: database abstraction
+- Share TS models between api & web
+- Router (/router) in api & web
 
 ## API
 
@@ -16,8 +28,7 @@ Then run `npm install` and start the dev environment with `npm run start`
 - 🚨 Have a look to the .env file. For the purpose of this example this file is commited, in the real world you would never do that.
 
 ```sh
-npm run dev # For dev
-npm run start # For production
+npm run start
 ```
 
 ## DB
@@ -36,4 +47,26 @@ Test your connection with:
 
 ```sh
 mongo -u api --authenticationDatabase todo_app
+```
+
+## Web
+
+Simple CRA application.
+
+- React & Redux
+- Redux Toolkit
+- MaterialUI
+
+```sh
+/__tests__/ # Integration tests
+/components/ # "dumb"/reusable components
+/services/ # Global services
+/store/ # App state
+/features/
+          api # Api related code for this feature
+          models # TS interface/types
+          selectors # feature state selector
+          store # feature state
+          services # feature service
+          *.tests # unit tests
 ```

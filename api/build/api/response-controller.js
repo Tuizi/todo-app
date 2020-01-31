@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const withResponseController = (requestToControl) => (req, res, next) => {
+const withResponseController = (requestToControl) => async (req, res, next) => {
     try {
-        const response = requestToControl(req, res, next);
+        const response = await requestToControl(req, res, next);
         return res.status(200).json({ data: response });
     }
     catch (err) {

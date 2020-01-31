@@ -1,16 +1,17 @@
 import mongoose from 'mongoose';
 
-mongoose.connect(`mongodb://${process.ENV.DB_HOST}/${process.ENV.DB_NAME}`, {
-  useNewUrlParser: true
-});
-
-const db = mongoose.connection;
-
-db.on('error', () => {
-  throw new Error('Database error');
-});
-db.once('open', function() {
-  // we're connected!
-});
+const uri = `mongodb://${process.env.DB_HOST}/${process.env.DB_NAME}`;
+mongoose.connect(
+  uri,
+  {
+    useNewUrlParser: true
+  },
+  err => {
+    if (err) {
+      throw new Error(err.message);
+    }
+    console.log('Successfully connected to', uri);
+  }
+);
 
 export default mongoose;
