@@ -7,7 +7,9 @@
     "install:api": "cd api && npm install",
     "install:web": "cd web && npm install",
     "postinstall": "npm run install:api && npm run install:web",
-    "start": ""
+    "start:database": "cd database && docker-compose down && docker-compose up",
+    "start:api": "cd api && npm start",
+    "start:web": "cd web && npm start"
   },
   "repository": {
     "type": "git",

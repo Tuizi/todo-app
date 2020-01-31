@@ -8,7 +8,13 @@ To run this project you need:
 - Mongo
 - A coffee ☕️
 
-Then run `npm install` and start the dev environment with `npm start`
+```sh
+npm install # will install all required depedency
+
+npm run start:database # start the mongodb database
+npm run start:api # start the backend (require the database)
+npm run start:web # start the frontend (require the api)
+```
 
 ## TODO
 
