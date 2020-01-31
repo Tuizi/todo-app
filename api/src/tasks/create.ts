@@ -1,10 +1,11 @@
 import express from 'express';
-import { createTask } from './services';
+import { createTask, documentToJson } from './services';
 
-const handler: express.RequestHandler = req => {
+const handler: express.RequestHandler = async req => {
   const text = req.body.data;
+  const task = await createTask(text);
 
-  return createTask(text);
+  return documentToJson(task);
 };
 
 export default {

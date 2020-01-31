@@ -1,5 +1,10 @@
 import { IAppState } from '../store/models';
 
-export const selectTasks = (state: IAppState) => state.tasks;
-export const selectTasksCollection = (state: IAppState) =>
-  selectTasks(state).collection;
+const selectTasksState = (state: IAppState) => state.tasks;
+
+export const selectTasks = (state: IAppState) =>
+  selectTasksState(state).collection;
+export const selectTasksLoadingStatus = (state: IAppState) =>
+  selectTasksState(state).loading;
+export const selectTasksError = (state: IAppState) =>
+  selectTasksState(state).error;

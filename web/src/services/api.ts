@@ -4,8 +4,8 @@ const API_PATH = '/api';
 
 export const requestApi = async <T>(
   url: string,
-  data: any,
-  method: Method = 'get'
+  method: Method = 'get',
+  data?: any
 ) => {
   const response = await axios({
     method,

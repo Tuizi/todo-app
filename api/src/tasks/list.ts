@@ -1,8 +1,10 @@
 import express from 'express';
-import { listTasks } from './services';
+import { listTasks, documentToJson } from './services';
 
-const handler: express.RequestHandler = () => {
-  return listTasks();
+const handler: express.RequestHandler = async () => {
+  const tasks = await listTasks();
+
+  return tasks.map(documentToJson);
 };
 
 export default {

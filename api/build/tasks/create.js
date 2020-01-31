@@ -1,9 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const services_1 = require("./services");
-const handler = req => {
+const handler = async (req) => {
     const text = req.body.data;
-    return services_1.createTask(text);
+    const task = await services_1.createTask(text);
+    return services_1.documentToJson(task);
 };
 exports.default = {
     route: '/',

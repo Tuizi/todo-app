@@ -1,11 +1,10 @@
 import { ListItem, ListItemText, Paper, Typography } from '@material-ui/core';
 import List from '@material-ui/core/List';
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { ITask } from '../models';
-import { selectTasksCollection } from '../selectors';
-import NewTask from './NewTask';
 import { makeStyles } from '@material-ui/core/styles';
+import React from 'react';
+import { useTasks } from '../hooks';
+import { ITask } from '../models';
+import NewTask from './NewTask';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -24,7 +23,8 @@ const useStyles = makeStyles(theme => ({
 
 const Tasks = () => {
   const classes = useStyles();
-  const tasks = useSelector(selectTasksCollection);
+
+  const { tasks } = useTasks();
 
   const renderTask = (task: ITask) => {
     return (

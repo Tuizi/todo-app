@@ -1,6 +1,9 @@
 import mongoose from 'mongoose';
 
-const uri = `mongodb://${process.env.DB_HOST}/${process.env.DB_NAME}`;
+const auth = `${process.env.DB_USER}:${process.env.DB_PASS}`;
+const database = `${process.env.DB_HOST}/${process.env.DB_NAME}`;
+const uri = `mongodb://${auth}@${database}`;
+
 mongoose.connect(
   uri,
   {

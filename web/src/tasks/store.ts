@@ -1,6 +1,6 @@
 import { createSlice, Dispatch, PayloadAction } from '@reduxjs/toolkit';
 import { ITasksState, ITask } from './models';
-import { createTask } from './api';
+import { createTask, listTasks } from './api';
 
 const tasksStore = createSlice({
   name: 'tasks',
@@ -11,26 +11,39 @@ const tasksStore = createSlice({
   } as ITasksState,
   reducers: {
     // ℹ️ Toolkit include immerjs so we can mutate the state
-    newTaskStart: state => {
+    loading: state => {
       state.loading = true;
       state.error = null;
     },
-    newTaskSuccess: (state, action: PayloadAction<ITask>) => {
+    failure: (state, action: PayloadAction<Error>) => {
+      state.error = action.payload;
+    },
+    add: (state, action: PayloadAction<ITask>) => {
       state.collection.push(action.payload);
     },
-    newTaskFailure: (state, action: PayloadAction<Error>) => {
-      state.error = action.payload;
+    set: (state, action: PayloadAction<ITask[]>) => {
+      state.collection = action.payload;
     }
   }
 });
 
 const newTaskAction = (text: string) => async (dispatch: Dispatch) => {
   try {
-    dispatch(tasksStore.actions.newTaskStart());
+    dispatch(tasksStore.actions.loading());
     const task = await createTask(text);
-    dispatch(tasksStore.actions.newTaskSuccess(task));
+    dispatch(tasksStore.actions.add(task));
   } catch (err) {
-    dispatch(tasksStore.actions.newTaskFailure(err));
+    dispatch(tasksStore.actions.failure(err));
+  }
+};
+
+const listTaskAction = () => async (dispatch: Dispatch) => {
+  try {
+    dispatch(tasksStore.actions.loading());
+    const tasks = await listTasks();
+    dispatch(tasksStore.actions.set(tasks));
+  } catch (err) {
+    dispatch(tasksStore.actions.failure(err));
   }
 };
 
@@ -38,6 +51,7 @@ export default {
   ...tasksStore,
   actions: {
     ...tasksStore.actions,
-    newTask: newTaskAction
+    newTask: newTaskAction,
+    listTask: listTaskAction
   }
 };
