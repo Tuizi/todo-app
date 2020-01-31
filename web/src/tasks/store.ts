@@ -1,6 +1,6 @@
 import { createSlice, Dispatch, PayloadAction } from '@reduxjs/toolkit';
 import { ITasksState, ITask } from './models';
-import { createTask, listTasks } from './api';
+import { createTask, listTasks, completeTask } from './api';
 
 const tasksStore = createSlice({
   name: 'tasks',
@@ -23,6 +23,14 @@ const tasksStore = createSlice({
     },
     set: (state, action: PayloadAction<ITask[]>) => {
       state.collection = action.payload;
+    },
+    update: (state, action: PayloadAction<ITask>) => {
+      const taskUpdated = action.payload;
+      const indexOfTaskToUpdate = state.collection.findIndex(
+        task => task.id === taskUpdated.id
+      );
+
+      state.collection[indexOfTaskToUpdate] = taskUpdated;
     }
   }
 });
@@ -46,12 +54,22 @@ const listTaskAction = () => async (dispatch: Dispatch) => {
     dispatch(tasksStore.actions.failure(err));
   }
 };
+const completeTaskAction = (taskId: string) => async (dispatch: Dispatch) => {
+  try {
+    dispatch(tasksStore.actions.loading());
+    const task = await completeTask(taskId);
+    dispatch(tasksStore.actions.update(task));
+  } catch (err) {
+    dispatch(tasksStore.actions.failure(err));
+  }
+};
 
 export default {
   ...tasksStore,
   actions: {
     ...tasksStore.actions,
     newTask: newTaskAction,
-    listTask: listTaskAction
+    listTask: listTaskAction,
+    completeTask: completeTaskAction
   }
 };

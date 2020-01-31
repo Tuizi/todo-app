@@ -4,6 +4,7 @@ export interface ITask {
   text: string;
   state: TaskState;
   id: string;
+  complete?: boolean;
 }
 
 export interface ITasksState {
