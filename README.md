@@ -74,5 +74,6 @@ Simple CRA application.
           selectors # feature state selector
           store # feature state
           services # feature service
+          hooks # feature's hooks
           *.tests # unit tests
 ```

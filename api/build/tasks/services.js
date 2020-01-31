@@ -9,7 +9,15 @@ exports.createTask = async (text) => {
     return task.save();
 };
 exports.listTasks = async () => models_1.default.find();
+exports.completeTask = async (taskId) => {
+    const task = await models_1.default.findById(taskId);
+    if (!task)
+        throw new Error('Not found');
+    task.complete = true;
+    return task.save();
+};
 exports.documentToJson = (task) => ({
     id: task._id,
-    text: task.text
+    text: task.text,
+    complete: task.complete
 });
